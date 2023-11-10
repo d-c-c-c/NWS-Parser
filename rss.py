@@ -1,10 +1,13 @@
 import feedparser
 
 # Parses RSS feed data from a URL
-
 # TODO: Error handling
-Feed = feedparser.parse('https://w1.weather.gov/xml/current_obs/KLFI.rss')
+#url = 'https://w1.weather.gov/xml/current_obs/KLFI.rss'
+url = input("Please enter a valid url: ")
+try:
+    Feed = feedparser.parse(url)
+    entry = Feed.entries[0]
 
-entry = Feed.entries
-
-print(entry)
+    print(entry.title)
+except:
+    print("ERROR: Invalid url")

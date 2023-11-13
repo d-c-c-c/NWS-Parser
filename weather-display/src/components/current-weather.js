@@ -29,13 +29,30 @@ const CurrentWeather = () => {
     });
     return (
         <div className = "weatherContainer">
-            <div className = "weatherHeader">Current Weather</div>
-            <div className ="top">
-                <p className = "location">{data.location}</p>
-                <p className = "weather-description">{data.weather}</p>
+            <div className = "weatherHeader">Current Weather at {data.location}</div>
+            <div className ="weatherInfo">
                 <img alt = "weather" className = "weather-icon" src="icons/01d.png" />
+                <p className = "temperature">{data.temperature}</p>
+                <div className = "details">
+                    <p className="param-row">
+                        <span className = "param-details">Wind Speed: 1000</span>
+                    </p>
+                    <p className="param-row">
+                        <span className = "param-details">Wind Speed: 1000</span>
+                    </p>
+                    <p className="param-row">
+                        <span className = "param-details">Wind Speed: 1000</span>
+                    </p>
+                    <p className="param-row">
+                        <span className = "param-details">Wind Speed: 1000</span>
+                    </p>
+                </div>
+                            
             </div>
-            
+            <div className = "weatherFooter">
+                <span className = "weather-description">{data.weather}</span>
+                <a href="FILLER">More Details</a>
+            </div>
         </div>
     );
 }

@@ -15,13 +15,10 @@ def data():
     xmlData = organize()
     # Returning an api for showing in  reactjs
     return {
-        'Name':"Test", 
-        "Age":"22",
-        "Date":time, 
-        "programming":"python",
         "Location":xmlData['Location'],
         "Temperature":xmlData['Temperature'],
-        "Weather":xmlData['Weather']
+        "Weather":xmlData['Weather'],
+        "Zipcode":"23666"
         }
 
  

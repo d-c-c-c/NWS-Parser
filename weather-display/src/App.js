@@ -6,10 +6,10 @@ function App() {
   // usestate for setting a javascript
     // object for storing and using data
     const [data, setdata] = useState({
-      name: "",
-      age: 0,
-      date: "",
-      programming: "",
+      location:"",
+      temperature:"",
+      weather:"",
+      zipcode:""
   });
 
   // Using useEffect for single rendering
@@ -18,12 +18,13 @@ function App() {
       // flask server it will be redirected to proxy
       fetch("/data").then((res) =>
           res.json().then((data) => {
-              // Setting a data from api
+              // Setting data from API
+              // value MUST match the name given in the JSON string; Case Sensitive
               setdata({
-                  name: data.Name,
-                  age: data.Age,
-                  date: data.Date,
-                  programming: data.programming,
+                  location:data.Location,
+                  temperature:data.Temperature,
+                  weather:data.Weather,
+                  zipcode:data.Zipcode
               });
           })
       );
@@ -33,11 +34,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>React and flask</h1>
-                {/* Calling a data from setdata for showing */}
-                <p>{data.name}</p>
-                <p>{data.age}</p>
-                <p>{data.date}</p>
-                <p>{data.programming}</p>
+                {/* Calling data to display */}
+                <p>{data.location}</p>
+                <p>{data.temperature}</p>
+                <p>{data.weather}</p>
+                <p>{data.zipcode}</p>
       </header>
     </div>
   );

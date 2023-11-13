@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
+from xmlparser import organize
 import datetime
  
 time = datetime.datetime.now()
@@ -10,15 +11,16 @@ CORS(app)
  
 # Route for seeing a data
 @app.route('/data')
-def get_time():
- 
+def data():
+    xmlData = organize()
     # Returning an api for showing in  reactjs
     return {
-        'Name':"Test", 
-        "Age":"22",
-        "Date":time, 
-        "programming":"python"
+        "Location":xmlData['Location'],
+        "Temperature":xmlData['Temperature'],
+        "Weather":xmlData['Weather'],
+        "Zipcode":"23666"
         }
+
  
      
 # Running app

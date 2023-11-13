@@ -1,0 +1,10 @@
+.weatherContainer {
+    width: 300px;
+    border-radius: 6px;
+    background-color: rgb(61, 61, 61);
+    margin: 20px auto 0 auto;
+}
+
+.weatherHeader {
+
+}

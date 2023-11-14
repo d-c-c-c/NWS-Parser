@@ -27,13 +27,22 @@
 }
 
 .temperature {
+    margin: auto;
     font-weight: 700;
     font-size: 45px;
     letter-spacing: -2px;
-    width:auto;
+    flex: 100%;
 }
 
+.tempDiv {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
 .weather-description {
+    font-weight: 500;
     margin-bottom: 5px;
 }
 
@@ -45,10 +54,15 @@
     flex-wrap: wrap;
 }
 .param-row {
-    font-size: 12px;
+    font-size: 10px;
     display: flex;
     justify-content: space-between;
     flex: 100%;
+}
+
+.param-value {
+    font-weight: 500;
+    margin-right: 10px;
 }
 
 .weather-icon {

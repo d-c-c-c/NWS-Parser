@@ -1,0 +1,70 @@
+/*Section for the weather display box itself*/
+.weatherContainer {
+    width: 500px;
+    border-radius: 6px;
+    background-color: rgb(61, 61, 61);
+    margin: 20px auto 0 auto;
+}
+
+.weatherHeader, .weatherFooter {
+    display:flex;
+    align-items: flex-start;
+    margin-left: 10px;
+    margin-right:10px;
+    font-size: 10px;
+}
+
+.weatherFooter {
+    justify-content: space-between;
+}
+
+/*Section for all the weather information */
+.weatherInfo {
+    height: 200px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.temperature {
+    margin: auto;
+    font-weight: 700;
+    font-size: 45px;
+    letter-spacing: -2px;
+    flex: 100%;
+}
+
+.tempDiv {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.weather-description {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.details {
+    width: 50%;
+    height: 100%;
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.param-row {
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex: 100%;
+}
+
+.param-value {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.weather-icon {
+    width: 300px;
+}

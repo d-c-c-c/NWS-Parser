@@ -16,9 +16,15 @@ def data():
     # Returning an api for showing in  reactjs
     return {
         "Location":xmlData['Location'],
-        "Temperature":xmlData['Temperature'],
+        "TempF":xmlData['TempF'],
+        "TempC":xmlData['TempC'],
         "Weather":xmlData['Weather'],
-        "Zipcode":"23666"
+        "Zipcode":"23666",
+        "Humidity":xmlData['Humidity'],
+        "Wind_Direction":xmlData['Wind Direction'],
+        "Wind_Speed":xmlData['Wind Speed'],
+        "Dew_Point":xmlData['Dew Point'],
+        "Visibility":xmlData['Visibility'],
         }
 
  

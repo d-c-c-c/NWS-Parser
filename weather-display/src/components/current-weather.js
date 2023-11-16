@@ -13,7 +13,8 @@ const CurrentWeather = () => {
         dew_point:"",
         wind_dir:"",
         wind_speed:0,
-        visibility:""
+        visibility:"",
+        time:""
     });
   
     // Using useEffect for single rendering
@@ -34,14 +35,19 @@ const CurrentWeather = () => {
                     wind_dir:data.Wind_Direction,
                     wind_speed:data.Wind_Speed,
                     dew_point:data.Dew_Point,
-                    visibility:data.Visibility
+                    visibility:data.Visibility,
+                    time:data.Date,
                 });
             })
         );
     });
     return (
         <div className = "weatherContainer">
-            <div className = "weatherHeader">Current Weather at {data.location}</div>
+            <div className = "weatherHeader">
+                <p className = "locationName">Current Weather at {data.location}</p>
+                <p className = "currentTime">{data.time}</p>
+            
+            </div>
             <div className ="weatherInfo">
                 <img alt = "weather" className = "weather-icon" src="icons/01d.png" />
                 <div className = "tempDiv">
@@ -70,7 +76,7 @@ const CurrentWeather = () => {
             </div>
             <div className = "weatherFooter">
                 <span className = "weather-description">{data.weather}</span>
-                <a href="https://forecast.weather.gov/MapClick.php?lat=38.91788999499656&lon=-77.53821002204819">More Details</a>
+                <a href="https://forecast.weather.gov/MapClick.php?lat=38.91788999499656&lon=-77.53821002204819" target="_blank" rel="noopener noreferrer">More Details</a>
             </div>
         </div>
     );

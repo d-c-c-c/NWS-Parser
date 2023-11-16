@@ -8,10 +8,19 @@
 
 .weatherHeader, .weatherFooter {
     display:flex;
-    align-items: flex-start;
+    align-items:flex-start;
     margin-left: 10px;
     margin-right:10px;
     font-size: 10px;
+}
+
+.weatherHeader {
+    flex-direction: column;
+}
+
+.locationName, .currentTime {
+    display:flex;
+    margin:0px;
 }
 
 .weatherFooter {

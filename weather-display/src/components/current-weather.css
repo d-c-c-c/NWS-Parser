@@ -18,13 +18,13 @@
     flex-direction: column;
 }
 
+.weatherFooter {
+    justify-content: space-between;
+}
+
 .locationName, .currentTime {
     display:flex;
     margin:0px;
-}
-
-.weatherFooter {
-    justify-content: space-between;
 }
 
 /*Section for all the weather information */

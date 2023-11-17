@@ -32,6 +32,8 @@ const CurrentWeather = () => {
 
     // Using useEffect for single rendering
     useEffect(() => {
+        //using setInterval to limit the number of GET requests sent to the server
+        const interval = setInterval(() => {
         // Using fetch to fetch the api from 
         // flask server it will be redirected to proxy
         fetch("/data").then((res) =>
@@ -53,7 +55,10 @@ const CurrentWeather = () => {
                 });
             })
         );
-    });
+        }, 2000) 
+        return () => { clearInterval(interval)};
+    }, []);
+    
     return (
         <div className = "weatherContainer">
             <div className = "weatherHeader">

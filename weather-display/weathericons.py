@@ -51,6 +51,10 @@ def iconMatch(weatherCode):
     else:                           #Unknown weather set as default
         return 'unknown'
     
+"""
+TODO Write a short description for this function
+
+"""
 def checkIfNight(curTime, iconStr):
     # If it is currently NIGHT && iconStr != unknown, replace the d in the icon name with and n for the nighttime icon 
     if (iconStr != 'unknown') and (curTime >= 18 or curTime <= 6):
@@ -64,10 +68,3 @@ def checkIfNight(curTime, iconStr):
 
     # It is currently daytime, do nothing
         
-
-    
-if __name__ == '__main__':
-    time = datetime.now()
-    # print(checkIfNight(time.hour, '01d'))
-    # print(checkIfNight(19, '01d'))
-    # print(checkIfNight(time.hour, 'unknown'))

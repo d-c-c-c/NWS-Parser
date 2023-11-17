@@ -14,7 +14,7 @@ const CurrentWeather = () => {
         wind_dir:"",
         wind_speed:0,
         visibility:"",
-        time:""
+        icon:""
     });
     
     //Used to keep track of the current time (UTC)
@@ -51,12 +51,12 @@ const CurrentWeather = () => {
                     wind_speed:data.Wind_Speed,
                     dew_point:data.Dew_Point,
                     visibility:data.Visibility,
-                    time:data.Date,
+                    icon:data.Icon
                 });
             })
         );
         }, 2000) 
-        return () => { clearInterval(interval)};
+        return () => {clearInterval(interval)};
     }, []);
     
     return (
@@ -67,7 +67,7 @@ const CurrentWeather = () => {
             
             </div>
             <div className ="weatherInfo">
-                <img alt = "weather" className = "weather-icon" src="icons/01d.png" />
+                <img alt = "weather" className = "weather-icon" src={`icons/${data.icon}.png`} />
                 <div className = "tempDiv">
                     <p className = "temperature">{data.temp_f}°F</p>
                     <p className = "temperature">{data.temp_c}°C</p>

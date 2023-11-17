@@ -1,7 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
+
+#Files from current project
 from xmlparser import organize
-import datetime
+import weathericons
+from weathericons import current_weather_code
+from datetime import datetime
  
 # Initializing flask app
 app = Flask(__name__)
@@ -11,6 +15,8 @@ CORS(app)
 @app.route('/data')
 def data():
     xmlData = organize()
+    time = datetime.now()
+    icon = weathericons.checkIfNight(time.hour, weathericons.iconMatch(current_weather_code))
     # Returning an api for showing in  reactjs
     return {
         "Location":xmlData['Location'],
@@ -23,6 +29,7 @@ def data():
         "Wind_Speed":xmlData['Wind Speed'],
         "Dew_Point":xmlData['Dew Point'],
         "Visibility":xmlData['Visibility'],
+        "Icon": icon
         }
 
  
@@ -30,3 +37,4 @@ def data():
 # Running app
 if __name__ == '__main__':
     app.run()
+    

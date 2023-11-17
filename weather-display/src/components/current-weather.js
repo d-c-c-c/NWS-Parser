@@ -16,7 +16,20 @@ const CurrentWeather = () => {
         visibility:"",
         time:""
     });
-  
+    
+    //Used to keep track of the current time (UTC)
+    //Could be changed to local time with ___.toLocaleString()
+    const [date, setDate] = useState(new Date().toLocaleString());
+
+    useEffect(() => {
+        //Update the time displayed every second
+        let curTime = setInterval(() => {
+            setDate(new Date().toLocaleString())
+        }, 1000)
+
+        return () => clearInterval(curTime);
+    }, []);
+
     // Using useEffect for single rendering
     useEffect(() => {
         // Using fetch to fetch the api from 
@@ -45,7 +58,7 @@ const CurrentWeather = () => {
         <div className = "weatherContainer">
             <div className = "weatherHeader">
                 <p className = "locationName">Current Weather at {data.location}</p>
-                <p className = "currentTime">{data.time}</p>
+                <p className = "currentTime">{date}</p>
             
             </div>
             <div className ="weatherInfo">

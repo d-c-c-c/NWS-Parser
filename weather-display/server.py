@@ -10,7 +10,6 @@ CORS(app)
 # Route for seeing a data
 @app.route('/data')
 def data():
-    time = datetime.datetime.now()
     xmlData = organize()
     # Returning an api for showing in  reactjs
     return {
@@ -24,7 +23,6 @@ def data():
         "Wind_Speed":xmlData['Wind Speed'],
         "Dew_Point":xmlData['Dew Point'],
         "Visibility":xmlData['Visibility'],
-        "Date": time
         }
 
  

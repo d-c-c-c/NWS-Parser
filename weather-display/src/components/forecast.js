@@ -33,30 +33,32 @@ const Forecast = () => {
     }, []);
     //List of days used for the forecast list
     return (
+        <div>
+            <span className = "forecast-header">7 Day Forecast</span>
+            <div className = "forecastContainer">
 
-        <div className = "forecastContainer">
+                {data.days.map((day, index) => (
 
-            {data.days.map((day, index) => (
-
-                <div className = "forecast-item-container">
-                    <li key = {index} id = {index}>{day}</li>
-                    <img alt = "weather" className = "forecast-weather-icon" src={`icons/${data.weather_codes[index]}.png`} />
-                    <div className = "forecastDetails">
-                    <p className="param-row">
-                        <span className = "param-details">Temperature High: </span>
-                        <span className = "param-value">{data.temp_max[index]} °F</span>
-                    </p>
-                    <p className="param-row">
-                        <span className = "param-details">Temperature Low: </span>
-                        <span className = "param-value">{data.temp_min[index]} °F</span>
-                    </p>
-                    <p className="param-row">
-                        <span className = "param-details">Wind Speed: </span>
-                        <span className = "param-value">{data.wind_max[index]} MPH</span>
-                    </p>
+                    <div className = "forecast-item-container">
+                        <li key = {index} id = {index}>{day}</li>
+                        <img alt = "weather" className = "forecast-weather-icon" src={`icons/${data.weather_codes[index]}.png`} />
+                        <div className = "forecastDetails">
+                        <p className="param-row">
+                            <span className = "param-details">Temperature High: </span>
+                            <span className = "param-value">{data.temp_max[index]} °F</span>
+                        </p>
+                        <p className="param-row">
+                            <span className = "param-details">Temperature Low: </span>
+                            <span className = "param-value">{data.temp_min[index]} °F</span>
+                        </p>
+                        <p className="param-row">
+                            <span className = "param-details">Wind Speed: </span>
+                            <span className = "param-value">{data.wind_max[index]} MPH</span>
+                        </p>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     )
 }

@@ -36,12 +36,18 @@ def data():
 
 @app.route('/data/forecast')
 def forecastData():
-    weather_codes = forecast.trimDecimals(daily_data['weather_code'].tolist())
+    time = datetime.now()
+    forecast_weather_codes = forecast.trimDecimals(daily_data['weather_code'].tolist())
+
+    #Turning weather codes into their corresponding icons
+    for i in range(len(forecast_weather_codes)):
+        forecast_weather_codes[i] = weathericons.checkIfNight(time.hour, weathericons.iconMatch(forecast_weather_codes[i]))
+
     temp_max = forecast.formatDecimals(daily_data['temperature_2m_max'].tolist(), 1)
     temp_min = forecast.formatDecimals(daily_data['temperature_2m_min'].tolist(), 1)
     wind_max = forecast.formatDecimals(daily_data['wind_speed_10m_max'].tolist(), 1)
     return {
-        "Weather_Codes": weather_codes,
+        "Weather_Codes": forecast_weather_codes,
         "Temp_Max": temp_max,
         "Temp_Min": temp_min,
         "Wind_Max": wind_max

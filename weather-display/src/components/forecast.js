@@ -12,9 +12,22 @@ const Forecast = () => {
             {days.map((day, index) => (
 
                 <div className = "forecast-item-container">
-                    <li key = {index}>{day}</li>
+                    <li key = {index} id = {index}>{day}</li>
                     <img alt = "weather" className = "forecast-weather-icon" src={`icons/unknown.png`} />
-                    <label>Test</label>
+                    <div className = "forecastDetails">
+                    <p className="param-row">
+                        <span className = "param-details">Dew Point:</span>
+                        <span className = "param-value">1000</span>
+                    </p>
+                    <p className="param-row">
+                        <span className = "param-details">Dew Point:</span>
+                        <span className = "param-value">1000</span>
+                    </p>
+                    <p className="param-row">
+                        <span className = "param-details">Dew Point:</span>
+                        <span className = "param-value">1000</span>
+                    </p>
+                    </div>
                 </div>
             ))}
         </div>

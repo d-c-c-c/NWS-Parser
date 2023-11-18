@@ -4,6 +4,7 @@ from flask_cors import CORS
 #Files from current project
 from xmlparser import organize
 import weathericons
+from forecast import trimDecimals, formatDecimals, daily_data
 from weathericons import current_weather_code
 from datetime import datetime
  
@@ -32,7 +33,18 @@ def data():
         "Icon": icon
         }
 
-
+@app.route('/data/forecast')
+def forecastData():
+    weather_codes = trimDecimals(daily_data['weather_code'].tolist())
+    temp_max = formatDecimals(daily_data['temperature_2m_max'].tolist(), 1)
+    temp_min = formatDecimals(daily_data['temperature_2m_min'].tolist(), 1)
+    wind_max = formatDecimals(daily_data['wind_speed_10m_max'].tolist(), 1)
+    return {
+        "Weather_Codes": weather_codes,
+        "Temp_Max": temp_max,
+        "Temp_Min": temp_min,
+        "Wind_Max": wind_max
+    }
  
      
 # Running app

@@ -9,12 +9,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 150px;
     border-radius: 6px;
     background-color: rgb(61, 61, 61);
     margin: 20px auto 0 auto;
     margin-inline: 10px;
     
+}
+
+.forecast-header {
+    font-size: 40px;
 }
 
 .forecast-weather-icon {

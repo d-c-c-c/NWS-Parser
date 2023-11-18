@@ -65,10 +65,10 @@ def formatDecimals(data, position):
         data[i] = value
     return data
 
+print(daily_data)
 # if __name__ == '__main__':
 #     print(trimDecimals(daily_data['weather_code'].tolist()))
 #     print(formatDecimals(daily_data['temperature_2m_max'].tolist(),1))
 #     print(formatDecimals(daily_data['temperature_2m_min'].tolist(),1))
 #     print(formatDecimals(daily_data['wind_speed_10m_max'].tolist(),1))
-
 

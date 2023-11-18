@@ -14,8 +14,9 @@ const CurrentWeather = () => {
         wind_dir:"",
         wind_speed:0,
         visibility:"",
+        icon:""
     });
-
+    
     //Used to keep track of the current time (UTC)
     //Could be changed to local time with ___.toLocaleString()
     const [date, setDate] = useState(new Date().toLocaleString());
@@ -29,12 +30,10 @@ const CurrentWeather = () => {
         return () => clearInterval(curTime);
     }, []);
 
-    
-   
-    
-
     // Using useEffect for single rendering
     useEffect(() => {
+        //using setInterval to limit the number of GET requests sent to the server
+        const interval = setInterval(() => {
         // Using fetch to fetch the api from 
         // flask server it will be redirected to proxy
         fetch("/data").then((res) =>
@@ -52,19 +51,23 @@ const CurrentWeather = () => {
                     wind_speed:data.Wind_Speed,
                     dew_point:data.Dew_Point,
                     visibility:data.Visibility,
+                    icon:data.Icon
                 });
             })
         );
-    });
+        }, 2000) 
+        return () => {clearInterval(interval)};
+    }, []);
+    
     return (
         <div className = "weatherContainer">
             <div className = "weatherHeader">
                 <p className = "locationName">Current Weather at {data.location}</p>
-                <p className = "currentTime" id ="currentTime">{date}</p>
+                <p className = "currentTime">{date}</p>
             
             </div>
             <div className ="weatherInfo">
-                <img alt = "weather" className = "weather-icon" src="icons/01d.png" />
+                <img alt = "weather" className = "weather-icon" src={`icons/${data.icon}.png`} />
                 <div className = "tempDiv">
                     <p className = "temperature">{data.temp_f}°F</p>
                     <p className = "temperature">{data.temp_c}°C</p>

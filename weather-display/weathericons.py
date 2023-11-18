@@ -52,7 +52,7 @@ def iconMatch(weatherCode):
         return 'unknown'
     
 """
-TODO Write a short description for this function
+Checks if the current time is day or night, and changes the weather icon accordingly
 
 """
 def checkIfNight(curTime, iconStr):

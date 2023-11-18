@@ -4,7 +4,9 @@ from flask_cors import CORS
 #Files from current project
 from xmlparser import organize
 import weathericons
+import forecast
 from weathericons import current_weather_code
+from forecast import daily_data
 from datetime import datetime
  
 # Initializing flask app
@@ -32,7 +34,27 @@ def data():
         "Icon": icon
         }
 
+@app.route('/data/forecast')
+def forecastData():
+    time = datetime.now()
+    forecast_weather_codes = forecast.trimDecimals(daily_data['weather_code'].tolist())
 
+    #Changing date timestamps into their corresponding days
+    forecast_days = daily_data['date'].strftime("%A").tolist()
+    #Turning weather codes into their corresponding icons
+    for i in range(len(forecast_weather_codes)):
+        forecast_weather_codes[i] = weathericons.checkIfNight(time.hour, weathericons.iconMatch(forecast_weather_codes[i]))
+
+    temp_max = forecast.formatDecimals(daily_data['temperature_2m_max'].tolist(), 1)
+    temp_min = forecast.formatDecimals(daily_data['temperature_2m_min'].tolist(), 1)
+    wind_max = forecast.formatDecimals(daily_data['wind_speed_10m_max'].tolist(), 1)
+    return {
+        "Days": forecast_days,
+        "Weather_Codes": forecast_weather_codes,
+        "Temp_Max": temp_max,
+        "Temp_Min": temp_min,
+        "Wind_Max": wind_max
+    }
  
      
 # Running app

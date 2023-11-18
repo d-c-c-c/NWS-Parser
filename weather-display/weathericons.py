@@ -42,9 +42,9 @@ def iconMatch(weatherCode):
         return '50d'
     elif 51 <= weatherCode <= 57:   #Drizzle or Freezing Drizzle
         return '09d'
-    elif 61 <= weatherCode <= 67:   #Rain or Freezing rain
+    elif (61 <= weatherCode <= 67) or (80 <= weatherCode <=82):   #Rain or Freezing rain
         return '10d'
-    elif 71 <= weatherCode <= 86:   #Snowfall of any kind
+    elif (71 <= weatherCode <= 77) or (85 <= weatherCode <= 86):   #Snowfall of any kind
         return '13d'
     elif 95 <= weatherCode <= 99:   #Thunderstorms of any kind
         return '11d'
@@ -52,7 +52,7 @@ def iconMatch(weatherCode):
         return 'unknown'
     
 """
-TODO Write a short description for this function
+Checks if the current time is day or night, and changes the weather icon accordingly
 
 """
 def checkIfNight(curTime, iconStr):

@@ -1,4 +1,4 @@
-import "./current-weather.css"
+import "../styles/current-weather.css"
 import React, { useState, useEffect } from "react";
 const CurrentWeather = () => {
     // usestate for setting a javascript

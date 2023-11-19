@@ -18,7 +18,8 @@ params = {
 	"temperature_unit": "fahrenheit",
 	"wind_speed_unit": "mph",
 	"precipitation_unit": "inch",
-	"timezone": "America/New_York"
+	"timezone": "America/New_York",
+    "forecast_days": 10
 }
 responses = openmeteo.weather_api(url, params=params)
 

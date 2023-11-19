@@ -43,7 +43,7 @@ def forecastData():
     forecast_days = daily_data['date'].strftime("%A").tolist()
     #Turning weather codes into their corresponding icons
     for i in range(len(forecast_weather_codes)):
-        forecast_weather_codes[i] = weathericons.checkIfNight(time.hour, weathericons.iconMatch(forecast_weather_codes[i]))
+        forecast_weather_codes[i] = weathericons.iconMatch(forecast_weather_codes[i])
 
     temp_max = forecast.formatDecimals(daily_data['temperature_2m_max'].tolist(), 1)
     temp_min = forecast.formatDecimals(daily_data['temperature_2m_min'].tolist(), 1)

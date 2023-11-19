@@ -1,6 +1,11 @@
+.forecastWrapper {
+    overflow-x:auto;
+}
+
 .forecastContainer {
     display:flex;
     flex-direction: row;
+    width:1000px;
 }
 
 .forecast-item-container {
@@ -34,8 +39,12 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.forecast-list {
+    font-size:16px;
+}
 .param-row {
-    font-size: 10px;
+    font-size: 8px;
     display: flex;
     justify-content: space-between;
     flex: 100%;

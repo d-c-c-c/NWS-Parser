@@ -3,7 +3,7 @@ import requests
 import lxml
 
 #URL of the document we want to parse
-url = 'https://w1.weather.gov/xml/current_obs/KLFI.xml'
+url = 'https://w1.weather.gov/xml/current_obs/KPHF.xml'
 
 document = requests.get(url)
 

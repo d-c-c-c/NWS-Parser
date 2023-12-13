@@ -53,3 +53,4 @@ $RECYCLE.BIN/
 
 env/
 pycache/
+__pycache__/

@@ -6,7 +6,7 @@ from xmlparser import organize
 import weathericons
 import forecast
 from weathericons import current_weather_code
-from forecast import daily_data
+from forecast import daily_data, hourly_data, wind_bearing
 from datetime import datetime
  
 # Initializing flask app
@@ -16,22 +16,33 @@ CORS(app)
 # Route for seeing a data
 @app.route('/data')
 def data():
-    xmlData = organize()
+    # xmlData = organize()
     time = datetime.now()
     icon = weathericons.checkIfNight(time.hour, weathericons.iconMatch(current_weather_code))
     # Returning an api for showing in  reactjs
     return {
-        "Location":xmlData['Location'],
-        "TempF":xmlData['TempF'],
-        "TempC":xmlData['TempC'],
-        "Weather":xmlData['Weather'],
+        "Location":"Hampton, VA (Placeholder)",
+        "TempF":forecast.formatDecimals(hourly_data['temperature_2m'].tolist(), 1),
+        #"TempC":xmlData['TempC'],
+        #"Weather":xmlData['Weather'],
         "Zipcode":"23666",
-        "Humidity":xmlData['Humidity'],
-        "Wind_Direction":xmlData['Wind Direction'],
-        "Wind_Speed":xmlData['Wind Speed'],
-        "Dew_Point":xmlData['Dew Point'],
-        "Visibility":xmlData['Visibility'],
+        "Humidity":forecast.formatDecimals(hourly_data["relative_humidity_2m"].tolist(), 1),
+        "Wind_Direction": wind_bearing,
+        "Wind_Speed":forecast.formatDecimals(hourly_data["wind_speed_10m"].tolist(), 1),
+        "Dew_Point":forecast.formatDecimals(hourly_data["dew_point_2m"].tolist(), 1),
+        "Visibility":forecast.formatDecimals(hourly_data["visibility"].tolist(), 1),
         "Icon": icon
+        # "Location":xmlData['Location'],
+        # "TempF":xmlData['TempF'],
+        # "TempC":xmlData['TempC'],
+        # "Weather":xmlData['Weather'],
+        # "Zipcode":"23666",
+        # "Humidity":xmlData['Humidity'],
+        # "Wind_Direction":xmlData['Wind Direction'],
+        # "Wind_Speed":xmlData['Wind Speed'],
+        # "Dew_Point":xmlData['Dew Point'],
+        # "Visibility":xmlData['Visibility'],
+        # "Icon": icon
         }
 
 @app.route('/data/forecast')

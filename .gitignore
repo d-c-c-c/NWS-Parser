@@ -53,4 +53,5 @@ $RECYCLE.BIN/
 
 env/
 pycache/
-__pycache__/
+weather-display/__pycache__/*
+*.cache.sqlite

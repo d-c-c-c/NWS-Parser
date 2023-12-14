@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 #Files from current project
@@ -6,9 +6,9 @@ from xmlparser import organize
 import weathericons
 import forecast
 from weathericons import current_weather_code
-from forecast import daily_data
+from forecast import daily_data, hourly_data, wind_bearing, temperature_c, visibility_mi
 from datetime import datetime
- 
+import requests
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
@@ -18,19 +18,21 @@ CORS(app)
 def data():
     xmlData = organize()
     time = datetime.now()
-    icon = weathericons.checkIfNight(time.hour, weathericons.iconMatch(current_weather_code))
+    # Tuple of the weather icon code and weather code
+    weatherCodeInfo = weathericons.iconMatch(current_weather_code)
+    icon = weathericons.checkIfNight(time.hour, weatherCodeInfo[0])
     # Returning an api for showing in  reactjs
     return {
         "Location":xmlData['Location'],
-        "TempF":xmlData['TempF'],
-        "TempC":xmlData['TempC'],
-        "Weather":xmlData['Weather'],
+        "TempF":str((round(hourly_data["temperature_2m"][0], 1))),
+        "TempC":str((round(temperature_c[0], 1))),
+        "Weather":weatherCodeInfo[1],
         "Zipcode":"23666",
-        "Humidity":xmlData['Humidity'],
-        "Wind_Direction":xmlData['Wind Direction'],
-        "Wind_Speed":xmlData['Wind Speed'],
-        "Dew_Point":xmlData['Dew Point'],
-        "Visibility":xmlData['Visibility'],
+        "Humidity":str((round(hourly_data["relative_humidity_2m"][0], 1))),
+        "Wind_Direction": wind_bearing[0],
+        "Wind_Speed":str((round(hourly_data["wind_speed_10m"][0], 1))),
+        "Dew_Point":str((round(hourly_data["dew_point_2m"][0], 1))),
+        "Visibility":str((round(visibility_mi[0], 1))),
         "Icon": icon
         }
 
@@ -55,7 +57,8 @@ def forecastData():
         "Temp_Min": temp_min,
         "Wind_Max": wind_max
     }
- 
+
+
      
 # Running app
 if __name__ == '__main__':

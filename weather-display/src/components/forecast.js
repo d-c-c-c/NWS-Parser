@@ -42,7 +42,7 @@ const Forecast = () => {
 
                         <div className = "forecast-item-container">
                             <li key = {index} id = {index} className = "forecast-list">{day}</li>
-                            <img alt = "weather" className = "forecast-weather-icon" src={`icons/${data.weather_codes[index]}.png`} />
+                            <img alt = "weather" className = "forecast-weather-icon" src={`icons/${data.weather_codes[index][0]}.png`} />
                             <div className = "forecastDetails">
                             <p className="param-row">
                                 <span className = "param-details">Temperature Hi: </span>

@@ -8,7 +8,6 @@ import forecast
 from weathericons import current_weather_code
 from forecast import daily_data, hourly_data, wind_bearing, temperature_c, visibility_mi
 from datetime import datetime
-import json
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
@@ -20,13 +19,13 @@ def data():
     time = datetime.now()
     # Tuple of the weather icon code and weather code
     weatherCodeInfo = weathericons.iconMatch(current_weather_code)
-    icon = weathericons.checkIfNight(time.hour, weatherCodeInfo[1])
+    icon = weathericons.checkIfNight(time.hour, weatherCodeInfo[0])
     # Returning an api for showing in  reactjs
     return {
         "Location":"Hampton, VA (Placeholder)",
         "TempF":str((round(hourly_data["temperature_2m"][0], 1))),
         "TempC":str((round(temperature_c[0], 1))),
-        "Weather":weatherCodeInfo[0],
+        "Weather":weatherCodeInfo[1],
         "Zipcode":"23666",
         "Humidity":str((round(hourly_data["relative_humidity_2m"][0], 1))),
         "Wind_Direction": wind_bearing[0],

@@ -1,5 +1,6 @@
 import CurrentWeather from './components/current-weather'; 
 import Forecast from './components/forecast';
+import Search from './components/search';
 import './App.css';
 
 function App() {

@@ -27,7 +27,7 @@ current_weather_code = current.Variables(0).Value()
 
 
 '''
-Icon match: Checks  the current weather code value and returns the name of the appropriate icon
+Icon match: Checks  the current weather code value and returns the name of the appropriate icon as well as the weather description as a tuple
 '''
 def iconMatch(weatherCode):
     if weatherCode == 0:                                            #Clear skies

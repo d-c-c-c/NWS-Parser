@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 #Files from current project
@@ -8,6 +8,7 @@ import forecast
 from weathericons import current_weather_code
 from forecast import daily_data, hourly_data, wind_bearing, temperature_c, visibility_mi
 from datetime import datetime
+import requests
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
@@ -22,7 +23,7 @@ def data():
     icon = weathericons.checkIfNight(time.hour, weatherCodeInfo[0])
     # Returning an api for showing in  reactjs
     return {
-        "Location":"Hampton, VA (Placeholder)",
+        "Location":xmlData['Location'],
         "TempF":str((round(hourly_data["temperature_2m"][0], 1))),
         "TempC":str((round(temperature_c[0], 1))),
         "Weather":weatherCodeInfo[1],
@@ -56,7 +57,8 @@ def forecastData():
         "Temp_Min": temp_min,
         "Wind_Max": wind_max
     }
- 
+
+
      
 # Running app
 if __name__ == '__main__':

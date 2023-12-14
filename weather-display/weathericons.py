@@ -30,24 +30,28 @@ current_weather_code = current.Variables(0).Value()
 Icon match: Checks  the current weather code value and returns the name of the appropriate icon
 '''
 def iconMatch(weatherCode):
-    if weatherCode == 0:            #Clear skies
-        return '01d'
-    elif weatherCode == 1:          #Mainly clear
-        return '02d'
-    elif weatherCode == 2:          #Partly Cloudy
-        return '03d'
-    elif weatherCode == 3:          #Overcast
-        return '04d'
-    elif 45 <= weatherCode <= 48:   #Fog
-        return '50d'
-    elif 51 <= weatherCode <= 57:   #Drizzle or Freezing Drizzle
-        return '09d'
-    elif (61 <= weatherCode <= 67) or (80 <= weatherCode <=82):   #Rain or Freezing rain
-        return '10d'
+    if weatherCode == 0:                                            #Clear skies
+        return '01d', 'Clear skies'
+    elif weatherCode == 1:                                          #Mainly clear
+        return '02d', 'Mainly clear'
+    elif weatherCode == 2:                                          #Partly Cloudy
+        return '03d', 'Partly Cloudy'
+    elif weatherCode == 3:                                          #Overcast
+        return '04d','Overcast'
+    elif 45 <= weatherCode <= 48:                                   #Fog
+        return '50d', 'Fog'
+    elif 51 <= weatherCode <= 55:                                   #Drizzle
+        return '09d', 'Drizzle'
+    elif 56 <= weatherCode <= 57:                                   #Freezing Drizzle
+        return '09d', 'Freezing Drizzle'
+    elif (61 <= weatherCode <= 65) or (80 <= weatherCode <=82):     #Rain
+        return '10d', 'Rain'
+    elif (66 <= weatherCode <= 67):                                 #Freezing Rain    
+        return '10d', 'Freezing Rain'
     elif (71 <= weatherCode <= 77) or (85 <= weatherCode <= 86):   #Snowfall of any kind
-        return '13d'
+        return '13d', 'Snow'
     elif 95 <= weatherCode <= 99:   #Thunderstorms of any kind
-        return '11d'
+        return '11d', 'Thunderstorms'
     else:                           #Unknown weather set as default
         return 'unknown'
     
@@ -58,7 +62,7 @@ Checks if the current time is day or night, and changes the weather icon accordi
 def checkIfNight(curTime, iconStr):
     # If it is currently NIGHT && iconStr != unknown, replace the d in the icon name with and n for the nighttime icon 
     if (iconStr != 'unknown') and (curTime >= 18 or curTime <= 6):
-        updatedIconStr = iconStr.replace(iconStr[2], 'n')
+        updatedIconStr = iconStr.replace(iconStr, 'n')
         return updatedIconStr
     # If it is current DAY && iconStr != unknown,  return the unchanged string
     elif (iconStr != 'unknown') and (6 <= curTime <= 18):

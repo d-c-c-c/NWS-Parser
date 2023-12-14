@@ -18,13 +18,15 @@ CORS(app)
 def data():
     xmlData = organize()
     time = datetime.now()
-    icon = weathericons.checkIfNight(time.hour, weathericons.iconMatch(current_weather_code))
+    # Tuple of the weather icon code and weather code
+    weatherCodeInfo = weathericons.iconMatch(current_weather_code)
+    icon = weathericons.checkIfNight(time.hour, weatherCodeInfo[1])
     # Returning an api for showing in  reactjs
     return {
         "Location":"Hampton, VA (Placeholder)",
         "TempF":str((round(hourly_data["temperature_2m"][0], 1))),
         "TempC":str((round(temperature_c[0], 1))),
-        "Weather":xmlData['Weather'],
+        "Weather":weatherCodeInfo[0],
         "Zipcode":"23666",
         "Humidity":str((round(hourly_data["relative_humidity_2m"][0], 1))),
         "Wind_Direction": wind_bearing[0],

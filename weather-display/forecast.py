@@ -113,15 +113,6 @@ for i in range(len(hourly_data["temperature_2m"])):
 for i in range(len(hourly_data["visibility"])):
 	visibility_mi.append(toMiles(hourly_data["visibility"][i]))
     
-# for i in range(len(temperature_c)):
-#     print(temperature_c[i], end=" ")
-    
-# print(len(temperature_c))
-
-# for i in range(len(hourly_data["wind_direction_10m"])):
-#     print(wind_bearing[i], end=" ")
-
-#TODO: Write function to swap fahrenheit to celsius, and meters to miles
 #TODO: Implement weather code info. Maybe change function in weathericons.py to be more generalized
 #TODO: Geocoding nonsense for location
 hourly_dataframe = pd.DataFrame(data = hourly_data)

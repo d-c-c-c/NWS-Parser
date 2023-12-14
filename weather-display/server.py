@@ -32,17 +32,6 @@ def data():
         "Dew_Point":str((round(hourly_data["dew_point_2m"][0], 1))),
         "Visibility":str((round(visibility_mi[0], 1))),
         "Icon": icon
-        # "Location":xmlData['Location'],
-        # "TempF":xmlData['TempF'],
-        # "TempC":xmlData['TempC'],
-        # "Weather":xmlData['Weather'],
-        # "Zipcode":"23666",
-        # "Humidity":xmlData['Humidity'],
-        # "Wind_Direction":xmlData['Wind Direction'],
-        # "Wind_Speed":xmlData['Wind Speed'],
-        # "Dew_Point":xmlData['Dew Point'],
-        # "Visibility":xmlData['Visibility'],
-        # "Icon": icon
         }
 
 @app.route('/data/forecast')

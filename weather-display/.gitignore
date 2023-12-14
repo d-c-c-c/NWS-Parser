@@ -22,3 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+weather-display/__pycache__/forecast.cpython-310.pyc
+weather-display/__pycache__/weathericons.cpython-310.pyc
+weather-display/__pycache__/xmlparser.cpython-310.pyc

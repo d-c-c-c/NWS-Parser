@@ -113,6 +113,7 @@ for i in range(len(hourly_data["temperature_2m"])):
 for i in range(len(hourly_data["visibility"])):
 	visibility_mi.append(toMiles(hourly_data["visibility"][i]))
     
+
 #TODO: Implement weather code info. Maybe change function in weathericons.py to be more generalized
 #TODO: Geocoding nonsense for location
 hourly_dataframe = pd.DataFrame(data = hourly_data)

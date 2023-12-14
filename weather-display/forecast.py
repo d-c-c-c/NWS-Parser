@@ -18,13 +18,22 @@ Helper functions for data
 """
 Takes in a degree value and returns the bearing as would be seen on a compass.
 """
-def degreesToCompassBearing(num):
+def degreesToCompassBearing(num) -> str:
     DIRECTIONS = ['↑ N', '↗ NE', '→ E', '↘ SE', '↓ S', '↙ SW', '← W', '↖ NW']
     bearing = math.floor((num / 45) + 0.5)
     return DIRECTIONS[bearing % 8]
 
-# print(hourly_data["wind_direction_10m"][0])
-# print(degreesToCompassBearing(hourly_data["wind_direction_10m"][0]))
+"""
+Changes the temperature data from Fahrenheit to Celsius
+"""
+def toCelsius(temp) -> int:
+    return (temp - 32) * 5/9
+
+"""
+Converts feet to miles
+"""
+def toMiles(distance) -> int:
+    return distance * 0.000189394
 """
 Trims the decimal values off of the forecast data
 """
@@ -90,12 +99,27 @@ hourly_data["wind_speed_10m"] = hourly_wind_speed_10m
 hourly_data["wind_direction_10m"] = hourly_wind_direction_10m
 # Contains the compass bearing for the wind direction from hourly data
 wind_bearing = []
+# Hourly temperature in Celsius
+temperature_c = []
+# Hourly visibility in miles
+visibility_mi = []
 #rewriting wind direction data to show compass bearing rather than degrees
 for i in range(len(hourly_data["wind_direction_10m"])):
     wind_bearing.append(degreesToCompassBearing(hourly_data["wind_direction_10m"][i]))
 
-for i in range(len(hourly_data["wind_direction_10m"])):
-    print(wind_bearing[i], end=" ")
+for i in range(len(hourly_data["temperature_2m"])):
+    temperature_c.append(toCelsius(hourly_data["temperature_2m"][i]))
+    
+for i in range(len(hourly_data["visibility"])):
+	visibility_mi.append(toMiles(hourly_data["visibility"][i]))
+    
+# for i in range(len(temperature_c)):
+#     print(temperature_c[i], end=" ")
+    
+# print(len(temperature_c))
+
+# for i in range(len(hourly_data["wind_direction_10m"])):
+#     print(wind_bearing[i], end=" ")
 
 #TODO: Write function to swap fahrenheit to celsius, and meters to miles
 #TODO: Implement weather code info. Maybe change function in weathericons.py to be more generalized

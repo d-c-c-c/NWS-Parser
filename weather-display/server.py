@@ -6,9 +6,9 @@ from xmlparser import organize
 import weathericons
 import forecast
 from weathericons import current_weather_code
-from forecast import daily_data, hourly_data, wind_bearing
+from forecast import daily_data, hourly_data, wind_bearing, temperature_c, visibility_mi
 from datetime import datetime
- 
+import json
 # Initializing flask app
 app = Flask(__name__)
 CORS(app)
@@ -16,21 +16,21 @@ CORS(app)
 # Route for seeing a data
 @app.route('/data')
 def data():
-    # xmlData = organize()
+    xmlData = organize()
     time = datetime.now()
     icon = weathericons.checkIfNight(time.hour, weathericons.iconMatch(current_weather_code))
     # Returning an api for showing in  reactjs
     return {
         "Location":"Hampton, VA (Placeholder)",
-        "TempF":forecast.formatDecimals(hourly_data['temperature_2m'].tolist(), 1),
-        #"TempC":xmlData['TempC'],
-        #"Weather":xmlData['Weather'],
+        "TempF":str((round(hourly_data["temperature_2m"][0], 1))),
+        "TempC":str((round(temperature_c[0], 1))),
+        "Weather":xmlData['Weather'],
         "Zipcode":"23666",
-        "Humidity":forecast.formatDecimals(hourly_data["relative_humidity_2m"].tolist(), 1),
-        "Wind_Direction": wind_bearing,
-        "Wind_Speed":forecast.formatDecimals(hourly_data["wind_speed_10m"].tolist(), 1),
-        "Dew_Point":forecast.formatDecimals(hourly_data["dew_point_2m"].tolist(), 1),
-        "Visibility":forecast.formatDecimals(hourly_data["visibility"].tolist(), 1),
+        "Humidity":str((round(hourly_data["relative_humidity_2m"][0], 1))),
+        "Wind_Direction": wind_bearing[0],
+        "Wind_Speed":str((round(hourly_data["wind_speed_10m"][0], 1))),
+        "Dew_Point":str((round(hourly_data["dew_point_2m"][0], 1))),
+        "Visibility":str((round(visibility_mi[0], 1))),
         "Icon": icon
         # "Location":xmlData['Location'],
         # "TempF":xmlData['TempF'],
